@@ -6,6 +6,7 @@
       <class name="test.CLM_NewOnboardingTest">
         <methods>
           <include name="newOnboardingTest"/>
+          <include name="tearDown"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- test.CLM_NewOnboardingTest -->

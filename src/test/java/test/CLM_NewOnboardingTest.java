@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.log4testng.Logger;
@@ -114,6 +115,13 @@ public class CLM_NewOnboardingTest {
 		WebElement el = waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("DisplayCustomerName_D_pyMyCasesTree.pxResults(1)_1")));
 		AssertJUnit.assertEquals("THE CUSTOMER NAME APPEARS IN THE FIRST ROW", "John Doe", el.getText());
 		LOGGER.info("TEST CASE PASS");
+
+	}
+	
+	@AfterTest
+	public void tearDown() {
+
+		driver.quit();
 
 	}
 
