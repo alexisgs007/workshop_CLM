@@ -88,13 +88,13 @@ public class CLM_NewOnboardingTest {
 		
 		//Identification
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDType")));
-//		Thread.sleep(5000);
+		Thread.sleep(5000);
 		CLM_NewIndividualPage.dropdown_idType(driver, "Valid SSN ID");
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDValue")));
 		CLM_NewIndividualPage.textbox_primaryIdentifier(driver).sendKeys("547500449");
 		
 		//Primary Contact Information
-//		Thread.sleep(5000);
+		Thread.sleep(5000);
 		CLM_NewIndividualPage.textbox_phoneNumber(driver).sendKeys("8649012224");
 		CLM_NewIndividualPage.textbox_email(driver).sendKeys("john.doe@rulesware.com");
 		CLM_NewIndividualPage.textbox_addressLine1(driver).sendKeys("4512 Brown Avenue");
@@ -115,7 +115,7 @@ public class CLM_NewOnboardingTest {
 		WebElement el = waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("DisplayCustomerName_D_pyMyCasesTree.pxResults(1)_1")));
 		AssertJUnit.assertEquals("THE CUSTOMER NAME APPEARS IN THE FIRST ROW", "John Doe", el.getText());
 		LOGGER.info("TEST CASE PASS");
-
+		
 	}
 	
 	@AfterTest
