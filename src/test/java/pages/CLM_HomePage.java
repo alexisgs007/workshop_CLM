@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -78,15 +79,19 @@ public class CLM_HomePage {
 
 	}
 	
-	//MODAL DIALOG - CREATE NEW LINK 
-		public static WebElement link_createNew(WebDriver driver) {
+	// MODAL DIALOG - CREATE NEW LINK
+	public static WebElement link_createNew(WebDriver driver) {
 
-			Actions actions = new Actions(driver);
+		Actions actions = new Actions(driver);
+		try {
 			element = driver.findElement(By.name("SearchOnboardCustomer_pyWorkPage_21"));
 			actions.doubleClick(element).build().perform();
-			return element; 
-
+		} catch (StaleElementReferenceException ex) {
+			element = driver.findElement(By.name("SearchOnboardCustomer_pyWorkPage_21"));
+			actions.doubleClick(element).build().perform();
 		}
-	
+		return element;
+
+	}
 	
 }

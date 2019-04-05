@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -111,37 +112,58 @@ public class CLM_NewIndividualPage {
 	//IDENTIFICATION
 	//ID TYPE DROPDOWN
 	public static WebElement dropdown_idType(WebDriver driver, String idType) {
-
-		element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDType"));
+		try {
+			element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDType"));			
+		} catch (Exception ex) {
+			element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDType"));
+		}
+		
 		Select idTypeSelect = new Select(element);
 		idTypeSelect.selectByValue(idType);
-		return element; 
-
+		return element;
 	}
 
 	//PRIMARY IDENTIFIER TEXTBOX
 	public static WebElement textbox_primaryIdentifier(WebDriver driver) {
+		try {
 
-		element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDValue"));
-		return element; 
+			element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDValue"));
+		} catch (StaleElementReferenceException ex) {
 
+			element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDValue"));
+		}
+		return element;
 	}
 
 	//PRIMARY CONTACT INFORMATION
-	//PHONE NUMBER TEXTBOX
+	// PHONE NUMBER TEXTBOX
 	public static WebElement textbox_phoneNumber(WebDriver driver) {
-
-		element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPhone$gHome$pNumber"));
-		return element; 
+		try {
+			element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPhone$gHome$pNumber"));
+		} catch (StaleElementReferenceException ex) {
+			element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPhone$gHome$pNumber"));
+		}
+		return element;
 
 	}
 
 	//EMAIL TEXTBOX 
-	public static WebElement textbox_email(WebDriver driver) {
+	public static WebElement textbox_email(WebDriver driver, String text) {
+		try {
+			element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pEmail$gEmail1$pAddress"));
+			
+			for (int i=0; i < text.length(); i++) {
+				element.sendKeys(String.valueOf(text.charAt(i)));
+			}
+		} catch (StaleElementReferenceException ex) {
+			element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pEmail$gEmail1$pAddress"));
 
-		element = driver.findElement(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pEmail$gEmail1$pAddress"));
-		return element; 
-
+			for (int i=0; i < text.length(); i++) {
+				element.sendKeys(String.valueOf(text.charAt(i)));
+			}
+		}		
+		
+		return element;
 	}
 
 	//ADDRESS TYPE DROPDOWN

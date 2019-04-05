@@ -3,6 +3,7 @@ package test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,6 +49,7 @@ public class CLM_NewOnboardingTest {
 
 		final Logger LOGGER = Logger.getLogger(CLM_SearchCustomerTest.class);
 		WebDriverWait waiting = new WebDriverWait(driver, 20);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		//Logging in 
 		driver.get(constant.CLM_URL);
@@ -77,30 +79,48 @@ public class CLM_NewOnboardingTest {
 		
 		//Fill out all the form and click on Save
 		//Collect basic customer details
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrefix")));
 		CLM_NewIndividualPage.dropdown_prefix(driver, "Mr.");
-		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pDateOfBirth")));
-		CLM_NewIndividualPage.dateOfBirth(driver).sendKeys("1/1/1985");
+		js.executeScript("document.getElementsByName('$PpyWorkPage$ppyWorkParty$gCustomer$pDateOfBirth')[0].value='1/1/1985'");
+		//waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pDateOfBirth")));
+		//CLM_NewIndividualPage.dateOfBirth(driver).sendKeys("1/1/1985");
+		
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pMaritalStatus")));
 		CLM_NewIndividualPage.dropdown_maritalStatus(driver, "Married");
-		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pCountryOfBirthName")));
-		CLM_NewIndividualPage.textbox_countryOfBirth(driver).sendKeys("United States");
-		CLM_NewIndividualPage.textbox_countryOfBirth(driver).sendKeys(Keys.TAB);
+		
+
+		js.executeScript("document.getElementsByName('$PpyWorkPage$ppyWorkParty$gCustomer$pCountryOfBirthName')[0].value='United States'");			
+//		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pCountryOfBirthName")));
+//		CLM_NewIndividualPage.textbox_countryOfBirth(driver).sendKeys("United States");
+//		CLM_NewIndividualPage.textbox_countryOfBirth(driver).sendKeys(Keys.TAB);
+		
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pGender")));
 		CLM_NewIndividualPage.radiobutton_gender(driver, "Male").click();
 		
 		//Identification
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDType")));
 		CLM_NewIndividualPage.dropdown_idType(driver, "Valid SSN ID");
-		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDValue")));
-		CLM_NewIndividualPage.textbox_primaryIdentifier(driver).sendKeys("547500449");
 		
+	
+//		CLM_NewIndividualPage.textbox_primaryIdentifier(driver).sendKeys("547500449");
+		
+
+//		CLM_NewIndividualPage.textbox_phoneNumber(driver).sendKeys("8649012224");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pEmail$gEmail1$pAddress")));
+		//document.getElementById('elementID1').setAttribute('value', 'value1');
+//		js.executeScript("document.getElementsByName('$PpyWorkPage$ppyWorkParty$gCustomer$pEmail$gEmail1$pAddress')[0].setAttribute('value','john.doe@rulesware.com')");
+		CLM_NewIndividualPage.textbox_email(driver, "john.doe@rulesware.com");
+
 		//Primary Contact Information
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPhone$gHome$pNumber")));
-		CLM_NewIndividualPage.textbox_phoneNumber(driver).sendKeys("8649012224");
-		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pEmail$gEmail1$pAddress")));
-		CLM_NewIndividualPage.textbox_email(driver).sendKeys("john.doe@rulesware.com");
+		js.executeScript("document.getElementsByName('$PpyWorkPage$ppyWorkParty$gCustomer$pPhone$gHome$pNumber')[0].value='8649012224'");
+
+		
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDValue")));
+		js.executeScript("document.getElementsByName('$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDValue')[0].value='547500449'");
+
+		
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pAddressLine1")));
 		CLM_NewIndividualPage.textbox_addressLine1(driver).sendKeys("4512 Brown Avenue");
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pCity")));
@@ -109,9 +129,13 @@ public class CLM_NewOnboardingTest {
 		CLM_NewIndividualPage.textbox_state_province(driver).sendKeys("South Carolina");
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pZipCode")));
 		CLM_NewIndividualPage.textbox_postalCode(driver).sendKeys("29601");
-		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pCountry")));
-		CLM_NewIndividualPage.textbox_country(driver).sendKeys("United States");
-		CLM_NewIndividualPage.textbox_country(driver).sendKeys(Keys.TAB);
+		
+//		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pCountry")));
+//		CLM_NewIndividualPage.textbox_country(driver).sendKeys("United States");
+//		CLM_NewIndividualPage.textbox_country(driver).sendKeys(Keys.TAB);
+
+		js.executeScript("document.getElementsByName('$PTempAddress$pCountry')[0].value='United States'");
+
 			
 		//Clicking on the Next Button 
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("TreeNavigationFooter_pyWorkPage_14")));
@@ -128,11 +152,11 @@ public class CLM_NewOnboardingTest {
 		
 	}
 	
-	@AfterTest
-	public void tearDown() {
-
-		driver.quit();
-
-	}
+//	@AfterTest
+//	public void tearDown() {
+//
+//		driver.quit();
+//
+//	}
 
 }
