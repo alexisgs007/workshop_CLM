@@ -72,6 +72,8 @@ public class CLM_SearchCustomerTest {
 		WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='RULE_KEY']/div[1]//div[text()='No results found']")));		
 		AssertJUnit.assertEquals("NO RESULTS FOUND", "No results found", text.getText());
 		LOGGER.info("NO RESULTS FOUND || TEST CASE PASS");
+		
+		System.out.println("COMMIT ANYTHING");
 	}
 
 	@AfterTest

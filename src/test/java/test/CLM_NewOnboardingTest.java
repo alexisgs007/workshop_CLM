@@ -77,38 +77,48 @@ public class CLM_NewOnboardingTest {
 		
 		//Fill out all the form and click on Save
 		//Collect basic customer details
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrefix")));
-//		Thread.sleep(5000);
 		CLM_NewIndividualPage.dropdown_prefix(driver, "Mr.");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pDateOfBirth")));
 		CLM_NewIndividualPage.dateOfBirth(driver).sendKeys("1/1/1985");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pMaritalStatus")));
 		CLM_NewIndividualPage.dropdown_maritalStatus(driver, "Married");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pCountryOfBirthName")));
 		CLM_NewIndividualPage.textbox_countryOfBirth(driver).sendKeys("United States");
 		CLM_NewIndividualPage.textbox_countryOfBirth(driver).sendKeys(Keys.TAB);
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pGender")));
 		CLM_NewIndividualPage.radiobutton_gender(driver, "Male").click();
 		
 		//Identification
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDType")));
-		Thread.sleep(5000);
 		CLM_NewIndividualPage.dropdown_idType(driver, "Valid SSN ID");
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPrimaryIDValue")));
 		CLM_NewIndividualPage.textbox_primaryIdentifier(driver).sendKeys("547500449");
 		
 		//Primary Contact Information
-		Thread.sleep(5000);
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pPhone$gHome$pNumber")));
 		CLM_NewIndividualPage.textbox_phoneNumber(driver).sendKeys("8649012224");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PpyWorkPage$ppyWorkParty$gCustomer$pEmail$gEmail1$pAddress")));
 		CLM_NewIndividualPage.textbox_email(driver).sendKeys("john.doe@rulesware.com");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pAddressLine1")));
 		CLM_NewIndividualPage.textbox_addressLine1(driver).sendKeys("4512 Brown Avenue");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pCity")));
 		CLM_NewIndividualPage.textbox_cityName(driver).sendKeys("Greenville");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pCity")));
 		CLM_NewIndividualPage.textbox_state_province(driver).sendKeys("South Carolina");
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pZipCode")));
 		CLM_NewIndividualPage.textbox_postalCode(driver).sendKeys("29601");
 		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("$PTempAddress$pCountry")));
 		CLM_NewIndividualPage.textbox_country(driver).sendKeys("United States");
 		CLM_NewIndividualPage.textbox_country(driver).sendKeys(Keys.TAB);
 			
 		//Clicking on the Next Button 
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("TreeNavigationFooter_pyWorkPage_14")));
 		CLM_NewIndividualPage.button_next(driver).click();
 		
 		//Clicking the Cases menu at the top of the screen 
+		waiting.until(ExpectedConditions.visibilityOfElementLocated(By.name("pyPortalHeader_pyPortalHarness_6")));
 		CLM_HomePage.menu_cases(driver).click();
 		
 		//Checking the first case that appears, is the last that was created 
