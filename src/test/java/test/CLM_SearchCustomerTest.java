@@ -73,7 +73,6 @@ public class CLM_SearchCustomerTest {
 		AssertJUnit.assertEquals("NO RESULTS FOUND", "No results found", text.getText());
 		LOGGER.info("NO RESULTS FOUND || TEST CASE PASS");
 		
-		System.out.println("COMMIT ANYTHING");
 	}
 
 	@AfterTest
