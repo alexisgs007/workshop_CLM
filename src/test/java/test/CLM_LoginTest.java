@@ -52,7 +52,7 @@ public class CLM_LoginTest {
 		System.out.println("TITLE: " +driver.getTitle().trim());
 		
 		AssertJUnit.assertEquals("LOGIN SUCCESSFUL", title, driver.findElement(By.xpath("//*[@id='RULE_KEY']//div[text()='Client Lifecycle Management']")).getText());
-		LOGGER.info("TEST CASE PASS");
+//		LOGGER.info("TEST CASE PASS");
 		
 	}
 	
